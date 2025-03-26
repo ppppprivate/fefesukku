@@ -42,26 +42,26 @@ def crop_center_circle(img, output_size, border, crop_scale=1.5):
             half_the_height + larger_size/2
         )
     )
-    
+
     img = img.resize((output_size - 2*border, output_size - 2*border))
-    
-    
+
+
     final_img = Image.new("RGBA", (output_size, output_size), "white")
-    
-    
+
+
     mask_main = Image.new("L", (output_size - 2*border, output_size - 2*border), 0)
     draw_main = ImageDraw.Draw(mask_main)
     draw_main.ellipse((0, 0, output_size - 2*border, output_size - 2*border), fill=255)
-    
+
     final_img.paste(img, (border, border), mask_main)
-    
-    
+
+
     mask_border = Image.new("L", (output_size, output_size), 0)
     draw_border = ImageDraw.Draw(mask_border)
     draw_border.ellipse((0, 0, output_size, output_size), fill=255)
-    
+
     result = Image.composite(final_img, Image.new("RGBA", final_img.size, (0, 0, 0, 0)), mask_border)
-    
+
     return result
 
 
@@ -124,24 +124,24 @@ async def get_thumb(videoid):
     draw.text((text_x_position, 230), title1[1], fill=(255, 255, 255), font=title_font)
     draw.text((text_x_position, 320), f"{channel}  |  {views[:23]}", (255, 255, 255), font=arial)
 
-    
+
     line_length = 580  
 
-    
+
     red_length = int(line_length * 0.6)
     white_length = line_length - red_length
 
-    
+
     start_point_red = (text_x_position, 380)
     end_point_red = (text_x_position + red_length, 380)
     draw.line([start_point_red, end_point_red], fill="red", width=9)
 
-    
+
     start_point_white = (text_x_position + red_length, 380)
     end_point_white = (text_x_position + line_length, 380)
     draw.line([start_point_white, end_point_white], fill="white", width=8)
 
-    
+
     circle_radius = 10 
     circle_position = (end_point_red[0], end_point_red[1])
     draw.ellipse([circle_position[0] - circle_radius, circle_position[1] - circle_radius,
