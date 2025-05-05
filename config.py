@@ -52,6 +52,10 @@ HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
 # ----------------------------------------------------------------
+# Vars For API End Pont.
+YTPROXY_URL = getenv("YTPROXY_URL", 'https://tubed.okflix.top') ## E.G https://yt.okflix.
+YT_API_KEY = "sparrow123"
+
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
     "https://github.com/ppppprivate/fefesukku",
